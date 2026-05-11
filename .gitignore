@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Datasets (large files - do not commit)
+datasets/
+
+# Logs and results
+log/
+results/
+*.txt
+
+# Pre-trained models
+*.pth
+*.pth.tar
+*.pt
+
+# Temporary files
+*.tmp
+*.temp

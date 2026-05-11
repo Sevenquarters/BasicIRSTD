@@ -7,7 +7,6 @@ from utils import *
 import os
 from loss import *
 from model import *
-from skimage.feature.tests.test_orb import img
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
@@ -46,6 +45,10 @@ class Net(nn.Module):
                 self.model = UIUNet(mode='test')
         elif model_name == 'U-Net':
             self.model = Unet()
+        elif model_name == 'ResUNet':
+            self.model = ResUNet()
+        elif model_name == 'ResUNet-CBAM':
+            self.model = ResUNet_CBAM()
         elif model_name == 'ISTDU-Net':
             self.model = ISTDU_Net()
         elif model_name == 'RDIAN':

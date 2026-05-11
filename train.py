@@ -49,10 +49,11 @@ if opt.img_norm_cfg_mean != None and opt.img_norm_cfg_std != None:
 seed_pytorch(opt.seed)
 
 def train():
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
     train_set = TrainSetLoader(dataset_dir=opt.dataset_dir, dataset_name=opt.dataset_name, patch_size=opt.patchSize, img_norm_cfg=opt.img_norm_cfg)
     train_loader = DataLoader(dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
     
-    net = Net(model_name=opt.model_name, mode='train').cuda()
+    net = Net(model_name=opt.model_name, mode='train').to(device)
     net.train()
     
     epoch_state = 0
@@ -95,7 +96,7 @@ def train():
     
     for idx_epoch in range(epoch_state, opt.nEpochs):
         for idx_iter, (img, gt_mask) in enumerate(train_loader):
-            img, gt_mask = Variable(img).cuda(), Variable(gt_mask).cuda()
+            img, gt_mask = Variable(img).to(device), Variable(gt_mask).to(device)
             if img.shape[0] == 1:
                 continue
             pred = net.forward(img)
@@ -134,10 +135,11 @@ def train():
             test(save_pth)
 
 def test(save_pth):
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
     test_set = TestSetLoader(opt.dataset_dir, opt.dataset_name, opt.dataset_name, img_norm_cfg=opt.img_norm_cfg)
     test_loader = DataLoader(dataset=test_set, num_workers=1, batch_size=1, shuffle=False)
     
-    net = Net(model_name=opt.model_name, mode='test').cuda()
+    net = Net(model_name=opt.model_name, mode='test').to(device)
     ckpt = torch.load(save_pth)
     net.load_state_dict(ckpt['state_dict'])
     net.eval()
@@ -146,7 +148,7 @@ def test(save_pth):
     eval_PD_FA = PD_FA()
     with torch.no_grad():
         for idx_iter, (img, gt_mask, size, _) in enumerate(test_loader):
-            img = Variable(img).cuda()
+            img = Variable(img).to(device)
             pred = net.forward(img)
             pred = pred[:,:,:size[0],:size[1]]
             gt_mask = gt_mask[:,:,:size[0],:size[1]]

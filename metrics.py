@@ -77,7 +77,7 @@ class PD_FA():
     def get(self):
         Final_FA =  self.dismatch_pixel / self.all_pixel
         Final_PD =  self.PD /self.target
-        return Final_PD, float(Final_FA.cpu().detach().numpy())
+        return Final_PD, float(Final_FA.cpu().detach().numpy().item() if Final_FA.dim() > 0 else Final_FA.cpu().detach().numpy())
 
     def reset(self):
         self.FA  = np.zeros([self.bins+1])

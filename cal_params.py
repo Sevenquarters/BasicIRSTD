@@ -14,10 +14,11 @@ global opt
 opt = parser.parse_args()
 
 if __name__ == '__main__':
-    opt.f = open('./params_' + (time.ctime()).replace(' ', '_') + '.txt', 'w')
-    input_img = torch.rand(1,1,256,256).cuda()
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    opt.f = open('./params_' + (time.ctime()).replace(' ', '_').replace(':', '-') + '.txt', 'w')
+    input_img = torch.rand(1,1,256,256).to(device)
     for model_name in opt.model_names:
-        net = Net(model_name, mode='test').cuda()    
+        net = Net(model_name, mode='test').to(device)
         flops, params = profile(net, inputs=(input_img, ))
         print(model_name)
         print('Params: %2fM' % (params/1e6))

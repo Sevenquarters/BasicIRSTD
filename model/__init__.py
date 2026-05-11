@@ -7,4 +7,5 @@ from model.RISTDnet.model_RISTDnet import RISTDnet as RISTDnet
 from model.UIUNet.model_UIUNet import UIUNET as UIUNet
 from model.ISTDUNet.model_ISTDUNet import ISTDU_Net as ISTDU_Net
 from model.RDIAN.model_RDIAN import RDIAN as RDIAN
-from model.ResUNet.model_ResUNet import ResUNet as ResUNet
+from model.ResUNet.model_ResUNet import ResUNet
+from model.ResUNet.model_ResUNet_CBAM import ResUNet_CBAM as ResUNet
