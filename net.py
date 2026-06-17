@@ -49,12 +49,16 @@ class Net(nn.Module):
             self.model = ResUNet()
         elif model_name == 'ResUNet-CBAM':
             self.model = ResUNet_CBAM()
+        elif model_name == 'ResUNet-GCA':
+            self.model = ResUNet_GCA()
+        elif model_name == 'ResUNet-GCA-DSPG':
+            self.model = ResUNet_GCA_DSPG()
+        elif model_name == 'ResUNet-GCA-NoGate':
+            self.model = ResUNet_GCA_NoGate()
         elif model_name == 'ISTDU-Net':
             self.model = ISTDU_Net()
         elif model_name == 'RDIAN':
             self.model = RDIAN()
-        elif model_name == 'ResUNet':
-            self.model = ResUNet()
         
     def forward(self, img):
         return self.model(img)
