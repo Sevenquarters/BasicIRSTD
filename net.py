@@ -21,6 +21,21 @@ class Net(nn.Module):
                 self.model = DNANet(mode='train')
             else:
                 self.model = DNANet(mode='test')  
+        elif model_name == 'DNANet-LDEM':
+            if mode == 'train':
+                self.model = DNANet_LDEM(mode='train')
+            else:
+                self.model = DNANet_LDEM(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate-Stable':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate_Stable(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate_Stable(mode='test')
         elif model_name == 'DNANet_BY':
             if mode == 'train':
                 self.model = DNAnet_BY(mode='train')

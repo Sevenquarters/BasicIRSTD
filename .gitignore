@@ -37,3 +37,47 @@ results/
 # Temporary files
 *.tmp
 *.temp
+
+# External repositories: ignore caches, IDE files, generated outputs,
+# evaluation result dumps, and other bulky non-source artifacts.
+external/**/__pycache__/
+external/**/*.pyc
+external/**/*.pyo
+external/**/*.pyd
+external/**/.idea/
+external/**/.vscode/
+external/**/.ipynb_checkpoints/
+external/**/build/
+external/**/dist/
+external/**/runs/
+external/**/wandb/
+external/**/output/
+external/**/outputs/
+external/**/results/
+external/**/checkpoints/
+external/**/weights/
+external/**/tmp/
+external/**/temp/
+
+# External evaluation and benchmark dumps
+external/**/evaluation_script/state_of_arts/
+external/**/evaluation_script/*.json
+external/**/evaluation_script/*.txt
+external/**/data/result-*.txt
+external/**/BMVC2020/*.txt
+external/**/CVPRW2017/*.txt
+external/**/filename_*.txt
+
+# External media and bulky demo assets that are not source code
+external/**/*.png
+external/**/*.jpg
+external/**/*.jpeg
+external/**/*.bmp
+external/**/*.gif
+external/**/*.mp4
+external/**/*.avi
+external/**/*.mov
+external/**/*.mkv
+external/**/*.pdf
+external/**/*.mat
+external/**/*.mexw64
