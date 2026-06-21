@@ -42,6 +42,7 @@ parser.add_argument("--intervals", type=int, default=10, help="Intervals for pri
 parser.add_argument("--eval_intervals", type=int, default=1, help="Intervals for evaluation metrics")
 parser.add_argument("--save_intervals", type=int, default=50, help="Intervals for checkpoint saving")
 parser.add_argument("--seed", type=int, default=42, help="Threshold for test")
+parser.add_argument("--aux_shape_weight", type=float, default=0.2, help="Auxiliary shape loss weight")
 
 global opt
 opt = parser.parse_args()
@@ -152,7 +153,7 @@ def train():
     train_set = TrainSetLoader(dataset_dir=opt.dataset_dir, dataset_name=opt.dataset_name, patch_size=opt.patchSize, img_norm_cfg=opt.img_norm_cfg)
     train_loader = DataLoader(dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
     
-    net = Net(model_name=opt.model_name, mode='train').to(device)
+    net = Net(model_name=opt.model_name, mode='train', aux_shape_weight=opt.aux_shape_weight).to(device)
     net.train()
     
     epoch_state = 0
@@ -300,7 +301,7 @@ def test(save_pth=None, state_dict=None):
     test_set = TestSetLoader(opt.dataset_dir, opt.dataset_name, opt.dataset_name, img_norm_cfg=opt.img_norm_cfg)
     test_loader = DataLoader(dataset=test_set, num_workers=1, batch_size=1, shuffle=False)
     
-    net = Net(model_name=opt.model_name, mode='test').to(device)
+    net = Net(model_name=opt.model_name, mode='test', aux_shape_weight=opt.aux_shape_weight).to(device)
     if state_dict is None:
         ckpt = torch.load(save_pth)
         state_dict = ckpt['state_dict']

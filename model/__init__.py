@@ -5,6 +5,11 @@ from model.DNANet.model_DNANet import DNANet as DNANet
 from model.DNANet.model_DNANet import DNANet_LDEM as DNANet_LDEM
 from model.DNANet.model_DNANet import DNANet_LDEM_Gate as DNANet_LDEM_Gate
 from model.DNANet.model_DNANet import DNANet_LDEM_Gate_Stable as DNANet_LDEM_Gate_Stable
+from model.DNANet.model_DNANet import DNANet_LDEM_Gate_Stable_Context as DNANet_LDEM_Gate_Stable_Context
+from model.DNANet.model_DNANet import DNANet_LDEM_Gate_Stable_ContextGate as DNANet_LDEM_Gate_Stable_ContextGate
+from model.DNANet.model_DNANet import DNANet_LDEM_Gate_Stable_Shape as DNANet_LDEM_Gate_Stable_Shape
+from model.DNANet.model_DNANet import DNANet_LDEM_Gate_Stable_ShapeLite as DNANet_LDEM_Gate_Stable_ShapeLite
+from model.DNANet.model_DNANet import DNANet_LDEM_Gate_Stable_AuxShapeLoss as DNANet_LDEM_Gate_Stable_AuxShapeLoss
 # from model.ISNet.model_ISNet import ISNet as ISNet
 from model.RISTDnet.model_RISTDnet import RISTDnet as RISTDnet
 from model.UIUNet.model_UIUNet import UIUNET as UIUNet

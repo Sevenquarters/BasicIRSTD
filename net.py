@@ -11,11 +11,13 @@ from model import *
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 class Net(nn.Module):
-    def __init__(self, model_name, mode):
+    def __init__(self, model_name, mode, aux_shape_weight=0.2):
         super(Net, self).__init__()
         self.model_name = model_name
         
         self.cal_loss = SoftIoULoss()
+        if model_name == 'DNANet-LDEM-Gate-Stable-AuxShapeLoss':
+            self.cal_loss = AuxShapeLoss(aux_weight=aux_shape_weight)
         if model_name == 'DNANet':
             if mode == 'train':
                 self.model = DNANet(mode='train')
@@ -36,6 +38,31 @@ class Net(nn.Module):
                 self.model = DNANet_LDEM_Gate_Stable(mode='train')
             else:
                 self.model = DNANet_LDEM_Gate_Stable(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate-Stable-Context':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate_Stable_Context(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate_Stable_Context(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate-Stable-ContextGate':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate_Stable_ContextGate(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate_Stable_ContextGate(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate-Stable-Shape':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate_Stable_Shape(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate_Stable_Shape(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate-Stable-ShapeLite':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate_Stable_ShapeLite(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate_Stable_ShapeLite(mode='test')
+        elif model_name == 'DNANet-LDEM-Gate-Stable-AuxShapeLoss':
+            if mode == 'train':
+                self.model = DNANet_LDEM_Gate_Stable_AuxShapeLoss(mode='train')
+            else:
+                self.model = DNANet_LDEM_Gate_Stable_AuxShapeLoss(mode='test')
         elif model_name == 'DNANet_BY':
             if mode == 'train':
                 self.model = DNAnet_BY(mode='train')
